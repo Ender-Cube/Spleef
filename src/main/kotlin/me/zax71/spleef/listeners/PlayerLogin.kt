@@ -52,17 +52,6 @@ class PlayerLogin : EventListener<PlayerLoginEvent> {
         inventory.setItemStack(0, shovel)
 
 
-        inventory.addInventoryCondition { playerInventory, slot, _, inventoryConditionResult ->
-            // Moving items is bad
-            inventoryConditionResult.isCancel = true
-
-            if (slot == 8) {
-                println("Used Barrier")
-            }
-
-        }
-
-
         return EventListener.Result.SUCCESS
     }
 }

@@ -2,10 +2,7 @@ package me.zax71.spleef
 
 import de.leonhard.storage.Yaml
 import me.zax71.spleef.blocks.Sign
-import me.zax71.spleef.listeners.PlayerBlockPlace
-import me.zax71.spleef.listeners.PlayerLogin
-import me.zax71.spleef.listeners.PlayerMove
-import me.zax71.spleef.listeners.PlayerStartDigging
+import me.zax71.spleef.listeners.*
 import net.minestom.server.MinecraftServer
 import net.minestom.server.event.EventFilter
 import net.minestom.server.event.EventNode
@@ -26,11 +23,13 @@ fun main() {
     val globalEventHandler = MinecraftServer.getGlobalEventHandler()
     val entityNode = EventNode.type("listeners", EventFilter.ALL)
     entityNode
+        .addListener(PlayerBlockPlace())
         .addListener(PlayerLogin())
         .addListener(PlayerMove())
-        .addListener(PlayerBlockPlace())
         .addListener(PlayerStartDigging())
+        .addListener(PlayerUseItem())
     globalEventHandler.addChild(entityNode)
+
     // Register block handler for signs
     MinecraftServer.getBlockManager().registerHandler(NamespaceID.from("minecraft:sign")) { Sign() }
 

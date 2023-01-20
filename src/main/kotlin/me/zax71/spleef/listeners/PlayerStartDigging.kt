@@ -17,7 +17,6 @@ class PlayerStartDigging : EventListener<PlayerStartDiggingEvent> {
 
         val player = event.player
         val blockPos = event.blockPosition
-        player.sendMessage("$player broke block at $blockPos")
         Arena1.INSTANCE?.setBlock(blockPos, Block.AIR)
         val snowBreak = Sound.sound(Key.key("block.snow.break"), Sound.Source.BLOCK, 1f, 1f)
         player.playSound(snowBreak)
